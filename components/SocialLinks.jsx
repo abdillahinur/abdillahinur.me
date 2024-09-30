@@ -1,7 +1,7 @@
 // components/SocialLinks.jsx
 import React from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { Github, Linkedin, Twitter } from 'lucide-react';
 
 export function SocialLinks() {
