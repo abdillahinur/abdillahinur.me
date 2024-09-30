@@ -4,7 +4,7 @@
 
 import React from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/Card';
 
 export default function SkillsSection() {
   return (

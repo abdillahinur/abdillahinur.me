@@ -3,7 +3,7 @@
 'use client';
 
 import React from 'react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { FileText, Mail, ChevronRight } from 'lucide-react';
 import { SocialLinks } from '@/components/SocialLinks';
 import {
@@ -12,7 +12,7 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-} from '@/components/ui/card';
+} from '@/components/ui/Card';
 
 export default function AboutSection({ setActiveSection, techInsights, setSelectedArticle }) {
   return (

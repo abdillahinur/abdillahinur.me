@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Moon, Sun, Mail } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { SocialLinks } from '@/components/SocialLinks';
 import { ArticleContent } from '@/components/ArticleContent';
 
