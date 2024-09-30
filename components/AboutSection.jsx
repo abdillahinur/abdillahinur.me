@@ -39,6 +39,7 @@ export default function AboutSection({ setActiveSection, techInsights, setSelect
           Resume
         </Button>
       </div>
+
       <Card className="mt-8">
         <CardContent className="pt-6">
           <p className="text-lg">
