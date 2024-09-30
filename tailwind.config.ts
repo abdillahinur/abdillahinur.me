@@ -1,19 +1,18 @@
-// tailwind.config.js
+import type { Config } from 'tailwindcss'
 
-module.exports = {
-  darkMode: 'class', // Ensure dark mode is set to 'class'
+const config: Config = {
+  darkMode: 'class',
   content: [
-    './app/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
-    './pages/**/*.{js,jsx}',
+    './app/**/*.{js,jsx,ts,tsx}',
+    './components/**/*.{js,jsx,ts,tsx}',
+    './pages/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {
-      typography: (theme) => ({
-        // Customize the 'dark' variant of typography
+      typography: (theme: (key: string) => string) => ({
         dark: {
           css: {
-            color: theme('colors.gray.300'), // Base text color
+            color: theme('colors.gray.300'),
             '[class~="lead"]': {
               color: theme('colors.gray.400'),
             },
@@ -73,11 +72,13 @@ module.exports = {
   },
   variants: {
     extend: {
-      typography: ['dark'], // Enable dark mode variant for typography
+      typography: ['dark'],
     },
   },
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
   ],
-};
+}
+
+export default config
