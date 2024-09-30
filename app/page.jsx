@@ -1,10 +1,8 @@
-// app/page.jsx
-
 'use client';
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Moon, Sun, Mail } from 'lucide-react';
+import { Moon, Sun, Mail, Menu, X } from 'lucide-react'; // Add Menu and X icons for the mobile view toggle
 import { useTheme } from 'next-themes';
 
 import { Button } from '@/components/ui/Button';
@@ -18,7 +16,6 @@ import ProjectsSection from '@/components/ProjectsSection';
 import SkillsSection from '@/components/SkillsSection';
 import EducationSection from '@/components/EducationSection';
 
-// Updated techInsights data
 
 // Updated techInsights data
 const techInsights = [
@@ -139,10 +136,12 @@ To anyone new to data science and considering a passion project, I say go for it
   },
 ];
 
+
 export default function Portfolio() {
   const { theme, setTheme } = useTheme();
   const [activeSection, setActiveSection] = useState('about');
   const [selectedArticle, setSelectedArticle] = useState(null);
+  const [isHeaderCollapsed, setIsHeaderCollapsed] = useState(true); // For mobile
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -160,8 +159,23 @@ export default function Portfolio() {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-gray-100 dark:bg-gray-800 shadow-md">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          {/* Center: Navigation */}
-          <nav className="flex space-x-6 text-center">
+          {/* Mobile menu toggle (visible only on mobile) */}
+          <button
+            className="sm:hidden" // Hidden on desktop
+            onClick={() => setIsHeaderCollapsed(!isHeaderCollapsed)}
+            aria-label="Toggle header"
+          >
+            {isHeaderCollapsed ? <Menu className="h-6 w-6" /> : <X className="h-6 w-6" />}
+          </button>
+
+          {/* Navigation menu (collapsed on mobile, expanded on desktop) */}
+          <nav
+            className={`${
+              isHeaderCollapsed ? 'hidden sm:flex' : 'flex flex-col'
+            } sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0 items-center transition-all duration-300 ${
+              !isHeaderCollapsed ? 'justify-center items-center w-full' : ''
+            }`}
+          >
             {[
               ['about', 'About'],
               ['experience', 'Experience'],
@@ -179,6 +193,7 @@ export default function Portfolio() {
                 onClick={() => {
                   setActiveSection(key);
                   setSelectedArticle(null);
+                  setIsHeaderCollapsed(true); // Collapse the header on mobile after selection
                 }}
               >
                 {label}
@@ -186,17 +201,16 @@ export default function Portfolio() {
             ))}
           </nav>
 
-          {/* Right side: Dark Mode Toggle */}
-          <div className="flex items-center">
-            <Button variant="ghost" size="icon" onClick={toggleDarkMode}>
-              {theme === 'dark' ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
-              <span className="sr-only">Toggle dark mode</span>
-            </Button>
-          </div>
+          {/* Dark Mode Toggle (always on the right) */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="ml-auto sm:ml-0"
+            onClick={toggleDarkMode}
+          >
+            {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            <span className="sr-only">Toggle dark mode</span>
+          </Button>
         </div>
       </header>
 
