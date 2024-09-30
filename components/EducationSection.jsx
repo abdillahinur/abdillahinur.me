@@ -10,7 +10,7 @@ export default function EducationSection() {
       <Card>
         <CardHeader>
           <CardTitle>Bachelor of Engineering in Software Engineering</CardTitle>
-          <CardDescription>Carleton University | Ottawa, Ontario | April 2021</CardDescription>
+          <CardDescription>Carleton University | Ottawa, Ontario </CardDescription>
         </CardHeader>
       </Card>
     </section>
