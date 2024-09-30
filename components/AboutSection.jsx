@@ -43,7 +43,7 @@ export default function AboutSection({ setActiveSection, techInsights, setSelect
       <Card className="mt-8">
         <CardContent className="pt-6">
           <p className="text-lg">
-            Hello! I'm Abdillahi, a passionate software developer with a keen interest in building scalable and efficient full-stack applications. With experience in both front-end and back-end technologies, I specialize in creating robust solutions that solve real-world problems. My journey in tech has led me from developing meaningful applications that service millions of Canadian taxpayers to exploring the frontiers of AI in software development. When I'm not coding, you can find me writing about the latest tech trends or working on exciting open-source projects. Welcome to my digital space where I share my experiences, insights, and the occasional coding adventure!
+            Hello! I'&apos;'m Abdillahi, a passionate software developer with a keen interest in building scalable and efficient full-stack applications. With experience in both front-end and back-end technologies, I specialize in creating robust solutions that solve real-world problems. My journey in tech has led me from developing meaningful applications that service millions of Canadian taxpayers to exploring the frontiers of AI in software development. When I'&apos;'m not coding, you can find me writing about the latest tech trends or working on exciting open-source projects. Welcome to my digital space where I share my experiences, insights, and the occasional coding adventure!
           </p>
         </CardContent>
       </Card>

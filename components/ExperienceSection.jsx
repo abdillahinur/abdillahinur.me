@@ -22,7 +22,7 @@ export default function ExperienceSection() {
               <li>Developed a web-based tax benefit estimator used by millions of Canadians to calculate eligibility for new tax benefits like the Canada Dental and Housing Benefits.</li>
               <li>Refactored legacy Java applications into a modern Angular-based architecture, improving scalability and reducing technical debt.</li>
               <li>Identified and resolved performance bottlenecks, improving system efficiency by 15%.</li>
-              <li>Collaborated with cross-functional teams to integrate new features into the CRA's My Account portal, the primary platform for millions of Canadians to access and manage tax information.</li>
+              <li>Collaborated with cross-functional teams to integrate new features into the CRA'&apos;'s My Account portal, the primary platform for millions of Canadians to access and manage tax information.</li>
             </ul>
           </CardContent>
         </Card>
