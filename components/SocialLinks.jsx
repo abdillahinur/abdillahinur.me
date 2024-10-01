@@ -7,7 +7,7 @@ import { Github, Linkedin, Twitter } from 'lucide-react';
 export function SocialLinks() {
   return (
     <div className="flex justify-center space-x-4">
-      <Link href="https://github.com/abdillahi-nur" target="_blank" rel="noopener noreferrer">
+      <Link href="https://github.com/abdillahinur" target="_blank" rel="noopener noreferrer">
         <Button variant="ghost" size="icon">
           <Github className="h-4 w-4" />
           <span className="sr-only">GitHub</span>
