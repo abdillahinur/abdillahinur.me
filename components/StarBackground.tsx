@@ -1,50 +1,47 @@
-"use client";
+'use client';
 
-import React, { useState, useRef, Suspense } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Points, PointMaterial } from "@react-three/drei";
-import * as random from "maath/random/dist/maath-random.esm";
+import React, { useRef, useState } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Points, PointMaterial } from '@react-three/drei';
+import * as random from 'maath/random/dist/maath-random.esm';
+import { Points as ThreePoints, BufferGeometry, Vector3 } from 'three';
 
-const StarBackground = (props: any) => {
-  const ref: any = useRef();
-  const [sphere] = useState(() =>
-    random.inSphere(new Float32Array(10000), { radius: 1.5 })
-  );
+type StarBackgroundProps = {
+  // Add any props if needed
+};
+
+const StarBackground: React.FC<StarBackgroundProps> = (props) => {
+  const ref = useRef<ThreePoints>(null);
+  const [sphere] = useState(() => random.inSphere(new Float32Array(5000), { radius: 1.2 }) as Float32Array);
 
   useFrame((state, delta) => {
-    ref.current.rotation.x -= delta/10;
-    ref.current.rotation.y -= delta/15;
-  })
+    if (ref.current) {
+      ref.current.rotation.x -= delta / 10;
+      ref.current.rotation.y -= delta / 15;
+    }
+  });
 
   return (
     <group rotation={[0, 0, Math.PI / 4]}>
-      <Points
-        ref={ref}
-        positions={sphere}
-        stride={3}
-        frustumCulled
-        {...props}
-      >
+      <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
         <PointMaterial
           transparent
           color="#fff"
-          size={0.003}
+          size={0.002}
           sizeAttenuation={true}
           depthWrite={false}
         />
       </Points>
     </group>
-  )
+  );
 };
 
-const StarsCanvas = () => (
+const StarsCanvas: React.FC = () => (
   <div className="w-full h-full absolute inset-0">
-    <Canvas camera={{position: [0, 0, 1]}} style={{ pointerEvents: 'none' }}>
-      <Suspense fallback={null}>
-        <StarBackground />
-      </Suspense>
+    <Canvas camera={{ position: [0, 0, 1] }}>
+      <StarBackground />
     </Canvas>
   </div>
-)
+);
 
 export default StarsCanvas;
