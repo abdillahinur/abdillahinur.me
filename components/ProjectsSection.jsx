@@ -42,7 +42,7 @@ export default function ProjectsSection() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>DuaConnect</CardTitle>
+            <CardTitle>DuaLink</CardTitle>
             <CardDescription>Islamic Platform for Shared Prayers</CardDescription>
           </CardHeader>
           <CardContent>
