@@ -1,11 +1,34 @@
 /* styles/globals.css */
 
-/* Tailwind CSS directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* @import '@radix-ui/styles.css'; */
+@layer base {
+  body {
+    @apply bg-black text-white;
+    font-family: 'Proxima Nova', sans-serif;
+  }
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+#__next {
+  min-height: 100%;
+}
+
+.night-sky {
+  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+  min-height: 100vh;
+}
+
+/* Glowing text effect */
+.glow-text {
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.5);
+}
 
 /* Proxima Nova Regular */
 @font-face {
@@ -20,7 +43,7 @@
 @font-face {
   font-family: 'Proxima Nova';
   src: url('/fonts/ProximaNova/ProximaNova-Bold.otf') format('opentype');
-  font-weight: 700; /* Ensure this matches the font-weight used in your CSS */
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }

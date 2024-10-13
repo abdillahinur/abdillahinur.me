@@ -1,9 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Moon, Sun, Mail, Menu, X } from 'lucide-react'; // Add Menu and X icons for the mobile view toggle
-import { useTheme } from 'next-themes';
+import { Mail, Menu, X } from 'lucide-react';
 
 import { Button } from '@/components/ui/Button';
 import { SocialLinks } from '@/components/SocialLinks';
@@ -15,7 +14,7 @@ import ExperienceSection from '@/components/ExperienceSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import SkillsSection from '@/components/SkillsSection';
 import EducationSection from '@/components/EducationSection';
-
+import StarsCanvas from '@/components/StarBackground';
 
 // Updated techInsights data
 const techInsights = [
@@ -196,40 +195,28 @@ To anyone new to data science and considering a passion project, I say go for it
   },
 
 ];
-
-
 export default function Portfolio() {
-  const { theme, setTheme } = useTheme();
   const [activeSection, setActiveSection] = useState('about');
   const [selectedArticle, setSelectedArticle] = useState(null);
-  const [isHeaderCollapsed, setIsHeaderCollapsed] = useState(true); // For mobile
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const toggleDarkMode = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
-
-  if (!mounted) return null;
+  const [isHeaderCollapsed, setIsHeaderCollapsed] = useState(true);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50 transition-colors duration-300 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-night-sky-start via-night-sky-middle to-night-sky-end text-white flex flex-col relative">
+      <div className="fixed inset-0 z-0">
+        <StarsCanvas />
+      </div>
+      
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-gray-100 dark:bg-gray-800 shadow-md">
+      <header className="sticky top-0 z-50 bg-night-sky-start bg-opacity-80 shadow-md">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          {/* Mobile menu toggle (visible only on mobile) */}
           <button
-            className="sm:hidden" // Hidden on desktop
+            className="sm:hidden"
             onClick={() => setIsHeaderCollapsed(!isHeaderCollapsed)}
             aria-label="Toggle header"
           >
             {isHeaderCollapsed ? <Menu className="h-6 w-6" /> : <X className="h-6 w-6" />}
           </button>
 
-          {/* Navigation menu (collapsed on mobile, expanded on desktop) */}
           <nav
             className={`${
               isHeaderCollapsed ? 'hidden sm:flex' : 'flex flex-col'
@@ -248,35 +235,24 @@ export default function Portfolio() {
               <Button
                 key={key}
                 variant="ghost"
-                className={`text-sm font-bold ${
-                  activeSection === key ? 'bg-gray-200 dark:bg-gray-700' : ''
+                className={`text-sm font-bold text-white ${
+                  activeSection === key ? 'bg-white bg-opacity-20' : ''
                 }`}
                 onClick={() => {
                   setActiveSection(key);
                   setSelectedArticle(null);
-                  setIsHeaderCollapsed(true); // Collapse the header on mobile after selection
+                  setIsHeaderCollapsed(true);
                 }}
               >
                 {label}
               </Button>
             ))}
           </nav>
-
-          {/* Dark Mode Toggle (always on the right) */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="ml-auto sm:ml-0"
-            onClick={toggleDarkMode}
-          >
-            {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-            <span className="sr-only">Toggle dark mode</span>
-          </Button>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8 flex-grow">
+      <main className="container mx-auto px-4 py-8 flex-grow relative z-10">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSection + (selectedArticle ? selectedArticle.id : '')}
@@ -292,7 +268,10 @@ export default function Portfolio() {
                 setSelectedArticle={setSelectedArticle}
               />
             )}
-
+            {activeSection === 'experience' && <ExperienceSection />}
+            {activeSection === 'projects' && <ProjectsSection />}
+            {activeSection === 'skills' && <SkillsSection />}
+            {activeSection === 'education' && <EducationSection />}
             {activeSection === 'tech-insights' && !selectedArticle && (
               <TechInsightsSection
                 techInsights={techInsights}
@@ -300,7 +279,6 @@ export default function Portfolio() {
                 setActiveSection={setActiveSection}
               />
             )}
-
             {activeSection === 'article' && selectedArticle && (
               <ArticleContent
                 article={selectedArticle}
@@ -308,20 +286,12 @@ export default function Portfolio() {
                 setActiveSection={setActiveSection}
               />
             )}
-
-            {activeSection === 'experience' && <ExperienceSection />}
-
-            {activeSection === 'projects' && <ProjectsSection />}
-
-            {activeSection === 'skills' && <SkillsSection />}
-
-            {activeSection === 'education' && <EducationSection />}
           </motion.div>
         </AnimatePresence>
       </main>
 
       {/* Footer */}
-      <footer className="mt-auto py-6 px-4 border-t border-gray-200 dark:border-gray-800">
+      <footer className="mt-auto py-6 px-4 border-t border-gray-800 bg-night-sky-start bg-opacity-80 relative z-10">
         <div className="container mx-auto text-center">
           <SocialLinks />
           <Button
@@ -333,7 +303,7 @@ export default function Portfolio() {
             <Mail className="h-4 w-4" />
             <span className="sr-only">Email</span>
           </Button>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
+          <p className="text-sm text-gray-400 mt-4">
             © 2024 Abdillahi Nur. All rights reserved.
           </p>
         </div>

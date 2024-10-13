@@ -1,5 +1,3 @@
-// components/TechInsightsSection.jsx
-
 'use client';
 
 import React from 'react';
@@ -13,15 +11,15 @@ export default function TechInsightsSection({ techInsights, setSelectedArticle, 
         {techInsights.map((article) => (
           <Card
             key={article.id}
-            className="hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer"
+            className="bg-night-sky-start bg-opacity-60 hover:bg-opacity-80 transition-colors duration-200 cursor-pointer border-gray-700"
             onClick={() => {
               setSelectedArticle(article);
               setActiveSection('article');
             }}
           >
             <CardHeader>
-              <CardTitle>{article.title}</CardTitle>
-              <CardDescription>{article.date}</CardDescription>
+              <CardTitle className="text-white">{article.title}</CardTitle>
+              <CardDescription className="text-gray-400">{article.date}</CardDescription>
             </CardHeader>
           </Card>
         ))}

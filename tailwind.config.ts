@@ -1,7 +1,5 @@
-import type { Config } from 'tailwindcss'
-
-const config: Config = {
-  darkMode: 'class',
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
     './app/**/*.{js,jsx,ts,tsx}',
     './components/**/*.{js,jsx,ts,tsx}',
@@ -9,76 +7,53 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      typography: (theme: (key: string) => string) => ({
-        dark: {
+      colors: {
+        'night-sky-start': '#0f0c29',
+        'night-sky-middle': '#302b63',
+        'night-sky-end': '#24243e',
+      },
+      fontFamily: {
+        'proxima-nova': ['Proxima Nova', 'sans-serif'],
+      },
+      typography: {
+        DEFAULT: {
           css: {
-            color: theme('colors.gray.300'),
-            '[class~="lead"]': {
-              color: theme('colors.gray.400'),
-            },
+            color: 'white',
             a: {
-              color: theme('colors.blue.400'),
-            },
-            strong: {
-              color: theme('colors.gray.100'),
-            },
-            'ol > li::before': {
-              color: theme('colors.gray.400'),
-            },
-            'ul > li::before': {
-              backgroundColor: theme('colors.gray.600'),
-            },
-            hr: {
-              borderColor: theme('colors.gray.700'),
-            },
-            blockquote: {
-              color: theme('colors.gray.100'),
-              borderLeftColor: theme('colors.gray.700'),
+              color: '#3b82f6', // Tailwind's blue-500
+              '&:hover': {
+                color: '#60a5fa', // Tailwind's blue-400
+              },
             },
             h1: {
-              color: theme('colors.gray.100'),
+              color: 'white',
             },
             h2: {
-              color: theme('colors.gray.100'),
+              color: 'white',
             },
             h3: {
-              color: theme('colors.gray.100'),
+              color: 'white',
             },
             h4: {
-              color: theme('colors.gray.100'),
+              color: 'white',
+            },
+            strong: {
+              color: 'white',
             },
             code: {
-              color: theme('colors.gray.100'),
-              backgroundColor: theme('colors.gray.800'),
+              color: '#e5e7eb', // Tailwind's gray-200
             },
-            'a code': {
-              color: theme('colors.blue.400'),
-            },
-            pre: {
-              color: theme('colors.gray.200'),
-              backgroundColor: theme('colors.gray.800'),
-            },
-            thead: {
-              color: theme('colors.gray.100'),
-              borderBottomColor: theme('colors.gray.600'),
-            },
-            'tbody tr': {
-              borderBottomColor: theme('colors.gray.700'),
+            blockquote: {
+              color: '#9ca3af', // Tailwind's gray-400
+              borderLeftColor: '#4b5563', // Tailwind's gray-600
             },
           },
         },
-      }),
-    },
-  },
-  variants: {
-    extend: {
-      typography: ['dark'],
+      },
     },
   },
   plugins: [
-    require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
   ],
 }
-
-export default config
