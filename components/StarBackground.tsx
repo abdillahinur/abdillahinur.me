@@ -4,11 +4,10 @@ import React, { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as random from 'maath/random/dist/maath-random.esm';
-import { Points as ThreePoints, BufferGeometry, Vector3 } from 'three';
+import { Points as ThreePoints } from 'three';
 
-type StarBackgroundProps = {
-  // Add any props if needed
-};
+// Define props type if needed
+type StarBackgroundProps = React.ComponentPropsWithoutRef<typeof Points>;
 
 const StarBackground: React.FC<StarBackgroundProps> = (props) => {
   const ref = useRef<ThreePoints>(null);
