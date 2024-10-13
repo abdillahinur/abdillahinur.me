@@ -220,7 +220,7 @@ export default function Portfolio() {
           <nav
             className={`${
               isHeaderCollapsed ? 'hidden sm:flex' : 'flex flex-col'
-            } sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0 items-center transition-all duration-300 ${
+            } sm:flex-row sm:space-x-6 space-y-2 sm:space-y-0 items-center transition-all duration-300 ${
               !isHeaderCollapsed ? 'justify-center items-center w-full' : ''
             }`}
           >
@@ -235,8 +235,8 @@ export default function Portfolio() {
               <Button
                 key={key}
                 variant="ghost"
-                className={`text-sm font-bold text-white ${
-                  activeSection === key ? 'bg-white bg-opacity-20' : ''
+                className={`text-lg font-extrabold text-white hover:text-blue-300 transition-colors duration-200 ${
+                  activeSection === key ? 'bg-white bg-opacity-20 text-blue-300' : ''
                 }`}
                 onClick={() => {
                   setActiveSection(key);
